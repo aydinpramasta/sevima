@@ -40,18 +40,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template x-for="(chapter, index) in chapters" :key="chapter.id ?? index">
+                                <template x-for="(chapter, index) in chapters" :key="chapter.id">
                                     <tr class="bg-white border-b">
                                         <input type="hidden" x-bind:name="'chapters[' + index + '][id]'"
-                                               x-bind:value="chapter.id ?? Date.now()"/>
+                                               x-bind:value="chapter.id"/>
                                         <td class="px-6 py-4">
-                                            <x-text-input type="text" x-bind:name="'chapters[' + index + '][chapter]'"
-                                                          x-bind:value="chapter.chapter"/>
+                                            <x-text-input type="text"
+                                                          x-bind:name="'chapters[' + index + '][chapter]'"
+                                                          x-bind:value="chapter.chapter"
+                                                          x-model="chapters[index]['chapter']"
+                                            />
                                         </td>
                                         <td class="px-6 py-4">
-                                            <x-text-input class="w-[100px]" type="number"
-                                                          x-bind:value="chapter.planned_hours ?? ''"
-                                                          x-bind:name="'chapters[' + index + '][planned_hours]'"/>
+                                            <x-text-input class="w-[100px]" type="text"
+                                                          x-bind:value="chapter.planned_hours"
+                                                          x-bind:name="'chapters[' + index + '][planned_hours]'"
+                                                          x-model="chapters[index]['planned_hours']"
+                                            />
                                             <span class="text-md ml-4">jam</span>
                                         </td>
                                         <td class="px-6 py-4">

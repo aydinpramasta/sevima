@@ -72,10 +72,9 @@
                             </template>
                         </ul>
 
-                        <a class="block ml-auto mt-8"
-                           x-bind:href="`{{ route('roadmap.planner.create') }}?topic=${oldInput}&chapters[][chapter]=${roadmaps.join('&chapters[][chapter]=')}`">
-                            <x-primary-button>Buat Plan dengan Roadmap Ini</x-primary-button>
-                        </a>
+                        <x-primary-button @click.prevent="redirectToCreatePlanner()" class="ml-auto mt-8">Buat Plan
+                            dengan Roadmap Ini
+                        </x-primary-button>
                     </div>
                 </div>
             </div>
@@ -103,6 +102,16 @@
                     } finally {
                         this.loading = false;
                     }
+                },
+                redirectToCreatePlanner() {
+                    const baseUrl = `{{ route('roadmap.planner.create') }}?topic=${this.oldInput}&`
+                    let payload = '';
+                    this.roadmaps.forEach((roadmap, index) => {
+                        payload += `chapters[${index}][id]=${Math.random() * 1000000}&`
+                        payload += `chapters[${index}][chapter]=${roadmap}&`
+                        payload += `chapters[${index}][planned_hours]=0&`
+                    });
+                    window.location.href = baseUrl + payload;
                 },
             };
         }
