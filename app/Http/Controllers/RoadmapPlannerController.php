@@ -64,26 +64,28 @@ class RoadmapPlannerController extends Controller
 
         $data = $request->validated();
 
-        $planner->update(['topic' => $data['topic']]);
+        DB::transaction(function () use ($planner, $data) {
+            $planner->update(['topic' => $data['topic']]);
 
-        // update the chapters, if not found create them
-        foreach ($data['chapters'] as $key => $val) {
-            $data['chapters'][$key]['plan_id'] = $planner->id;
-        }
+            // update the chapters, if not found create them
+            foreach ($data['chapters'] as $key => $val) {
+                $data['chapters'][$key]['plan_id'] = $planner->id;
+            }
 
-        $planner->chapters()->upsert($data['chapters'], 'id', ['chapter', 'planned_hours']);
+            $planner->chapters()->upsert($data['chapters'], 'id', ['chapter', 'planned_hours']);
 
-        // delete non existent chapters
-        $chaptersToBeDeleted = PlanChapter::query()
-            ->whereBelongsTo($planner, 'plan')
-            ->whereNotIn('id', array_column($data['chapters'], 'id'))
-            ->get();
+            // delete non existent chapters
+            $chaptersToBeDeleted = PlanChapter::query()
+                ->whereBelongsTo($planner, 'plan')
+                ->whereNotIn('id', array_column($data['chapters'], 'id'))
+                ->get();
 
-        foreach ($chaptersToBeDeleted as $chapter) {
-            if ($chapter->isNotEnded()) continue;
+            foreach ($chaptersToBeDeleted as $chapter) {
+                if ($chapter->isNotEnded()) continue;
 
-            $chapter->delete();
-        }
+                $chapter->delete();
+            }
+        });
 
         return redirect()
             ->route('roadmap.planner.index')
