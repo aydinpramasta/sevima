@@ -15,12 +15,12 @@
                     <div class="mb-8 flex justify-between gap-4">
                         <h2 class="font-semibold text-lg text-gray-800">Roadmap Anda</h2>
                         <a href="{{ route('roadmap.planner.create') }}">
-                            <x-primary-button type="button">Buat Plan</x-primary-button>
+                            <x-primary-button type="button">Buat Roadmap Plan</x-primary-button>
                         </a>
                     </div>
 
                     <div class="flex flex-wrap justify-center gap-8">
-                        @foreach($plans as $plan)
+                        @forelse($plans as $plan)
                             <a href="{{ route('roadmap.planner.edit') }}"
                                class="flex gap-4 items-center rounded-xl border px-6 py-4 transition duration-300 hover:shadow-md hover:scale-[0.99]">
                                 <span>{{ $plan->topic }}</span>
@@ -30,7 +30,9 @@
                                           data-name="Right"/>
                                 </svg>
                             </a>
-                        @endforeach
+                        @empty
+                            <h3 class="text-lg">Anda belum memiliki Roadmap.</h3>
+                        @endforelse
                     </div>
 
                     <div class="px-5 py-5 bg-white">

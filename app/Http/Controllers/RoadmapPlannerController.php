@@ -17,12 +17,9 @@ class RoadmapPlannerController extends Controller
         return view('roadmap.planner.index', compact('plans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('roadmap.planner.create');
     }
 
     /**
