@@ -21,7 +21,7 @@ class RoadmapChapterController extends Controller
         $chapter->save();
 
         return redirect()
-            ->route('roadmap.planner.index')
+            ->route('roadmap.planner.show', $chapter->plan)
             ->with('success', 'Berhasil mengedit chapter.');
     }
 }
