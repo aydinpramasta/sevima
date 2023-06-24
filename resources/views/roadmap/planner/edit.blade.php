@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="flex items-center gap-4 ml-auto">
-                            <a href="{{ route('roadmap.planner.index') }}">
+                            <a href="{{ route('roadmap.planner.show', $planner) }}">
                                 <x-secondary-button>Kembali</x-secondary-button>
                             </a>
                             <x-primary-button>Save</x-primary-button>
