@@ -4,7 +4,7 @@
             Roadmap Maker
         </h2>
         <p class="text-gray-600 leading-tight">
-            Buat roadmap terkait materi yang ingin Anda pelajari.
+            Generate roadmap terkait materi yang ingin Anda pelajari.
         </p>
     </x-slot>
 
@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="p-4 mb-6 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
-                        <span class="font-medium">Tips!</span> Setelah membuat roadmap, Anda bisa klik salah satu poin
+                        <span class="font-medium">Tips!</span> Setelah generate roadmap, Anda bisa klik salah satu poin
                         untuk mencari referensi di Google.
                     </div>
 
@@ -28,9 +28,9 @@
                                       autofocus/>
                         <x-secondary-button x-on:click.prevent="makeRoadmap()"
                                             x-bind:disabled="loading"
-                                            x-text="loading ? 'Loading...' : 'Buat Roadmap'"
+                                            x-text="loading ? 'Loading...' : 'Generate Roadmap'"
                                             type="submit"
-                                            class="whitespace-nowrap">Buat Roadmap
+                                            class="whitespace-nowrap">Generate Roadmap
                         </x-secondary-button>
                     </form>
 
@@ -62,7 +62,7 @@
                                             </defs>
                                         </svg>
 
-                                        <a x-bind:href='`//google.com/search?q=Belajar materi ${oldInput} bagian "${roadmap}"`'
+                                        <a x-bind:href='`//google.com/search?q=${oldInput} ${roadmap}`'
                                            x-text="roadmap"
                                            target="_blank"
                                            class="hover:underline"></a>
@@ -70,6 +70,11 @@
                                 </li>
                             </template>
                         </ul>
+
+                        <a class="block ml-auto mt-8"
+                           x-bind:href="`{{ route('roadmap.planner.create') }}?topic=${oldInput}&chapters[][chapter]=${roadmaps.join('&chapters[][chapter]=')}`">
+                            <x-primary-button>Buat Plan dengan Roadmap Ini</x-primary-button>
+                        </a>
                     </div>
                 </div>
             </div>

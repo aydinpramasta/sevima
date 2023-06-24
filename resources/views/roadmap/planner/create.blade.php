@@ -1,3 +1,4 @@
+{{--@dd(request('chapters'))--}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -39,17 +40,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <template x-for="(chapter, index) in chapters" :key="chapter.id">
+                                <template x-for="(chapter, index) in chapters" :key="chapter.id ?? index">
                                     <tr class="bg-white border-b">
                                         <input type="hidden" x-bind:name="'chapters[' + index + '][id]'"
-                                               x-bind:value="chapter.id"/>
+                                               x-bind:value="chapter.id ?? Date.now()"/>
                                         <td class="px-6 py-4">
                                             <x-text-input type="text" x-bind:name="'chapters[' + index + '][chapter]'"
                                                           x-bind:value="chapter.chapter"/>
                                         </td>
                                         <td class="px-6 py-4">
                                             <x-text-input class="w-[100px]" type="number"
-                                                          x-bind:value="chapter.planned_hours"
+                                                          x-bind:value="chapter.planned_hours ?? ''"
                                                           x-bind:name="'chapters[' + index + '][planned_hours]'"/>
                                             <span class="text-md ml-4">jam</span>
                                         </td>

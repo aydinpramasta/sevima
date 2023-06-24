@@ -37,4 +37,13 @@ class PlanChapter extends Model
     {
         return !is_null($this->start_at) && is_null($this->end_at);
     }
+
+    public function getStartDiff(): string
+    {
+        return $this->start_at
+            ->addHours($this->planned_hours)
+            ->timezone('Asia/Jakarta')
+            ->locale('id')
+            ->longRelativeToNowDiffForHumans();
+    }
 }
