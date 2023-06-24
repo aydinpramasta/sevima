@@ -69,8 +69,13 @@
                             @endforeach
                         </div>
 
-                        <div class="flex items-center gap-4 ml-auto">
-                            <a href="{{ route('roadmap.planner.index') }}">
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm">
+                                Generate Roadmap secara otomatis dengan
+                                <a class="underline text-purple-800"
+                                   href="{{ route('roadmap.maker') }}">Roadmap Maker!</a>
+                            </span>
+                            <a class="ml-auto" href="{{ route('roadmap.planner.index') }}">
                                 <x-secondary-button>Kembali</x-secondary-button>
                             </a>
                             <x-primary-button>Save</x-primary-button>
