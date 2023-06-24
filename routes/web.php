@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoadmapMakerController;
+use App\Http\Controllers\RoadmapPlannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/roadmap/maker', RoadmapMakerController::class)->name('roadmap.maker');
+    Route::prefix('/roadmap')->name('roadmap.')->group(function () {
+        Route::get('/maker', RoadmapMakerController::class)->name('maker');
+        Route::resource('/planner', RoadmapPlannerController::class);
+    });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
