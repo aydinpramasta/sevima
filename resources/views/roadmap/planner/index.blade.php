@@ -12,6 +12,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if($message = session('success'))
+                        <div class="p-4 mb-6 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
+                            <span class="font-medium">Success!</span> {{ $message }}
+                        </div>
+                    @endif
+
                     <div class="mb-8 flex justify-between gap-4">
                         <h2 class="font-semibold text-lg text-gray-800">Roadmap Anda</h2>
                         <a href="{{ route('roadmap.planner.create') }}">
