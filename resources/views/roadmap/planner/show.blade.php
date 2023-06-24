@@ -46,26 +46,27 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($planner->chapters as $chapter) @endforeach
-                                <tr class="bg-white border-b">
-                                    <td class="px-6 py-4">
-                                        <x-text-input type="text"
-                                                      :value="$chapter->chapter" disabled/>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <x-text-input class="w-[100px]" type="number"
-                                                      :value="$chapter->planned_hours" disabled/>
-                                        <span class="text-md ml-4">jam</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <form action="#"
-                                              onsubmit="return confirm('Apakah anda yakin?')">
-                                            @csrf
-                                            @method('put')
-                                            <x-primary-button>Mulai</x-primary-button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @foreach($planner->chapters as $chapter)
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4">
+                                            <x-text-input type="text"
+                                                          :value="$chapter->chapter" disabled/>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <x-text-input class="w-[100px]" type="number"
+                                                          :value="$chapter->planned_hours" disabled/>
+                                            <span class="text-md ml-4">jam</span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <form action="#"
+                                                  onsubmit="return confirm('Apakah anda yakin?')">
+                                                @csrf
+                                                @method('put')
+                                                <x-primary-button>Mulai</x-primary-button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

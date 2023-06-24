@@ -14,10 +14,17 @@ class PlanChapter extends Model
         'chapter',
         'planned_hours',
         'plan_id',
+        'start_at',
+        'end_at',
     ];
 
     public function plan(): BelongsTo
     {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function isNotEnded(): bool
+    {
+        return !is_null($this->start_at) && is_null($this->end_at);
     }
 }
