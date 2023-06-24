@@ -15,12 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('roadmap.maker')" :active="request()->routeIs('roadmap.maker')">
-                        Roadmap Maker
-                    </x-nav-link>
                     <x-nav-link :href="route('roadmap.planner.index')"
                                 :active="request()->routeIs('roadmap.planner.*')">
                         Roadmap Planner
+                    </x-nav-link>
+                    <x-nav-link :href="route('roadmap.maker')" :active="request()->routeIs('roadmap.maker')">
+                        Roadmap Maker
                     </x-nav-link>
                 </div>
             </div>
@@ -85,12 +85,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('roadmap.maker')" :active="request()->routeIs('roadmap.maker')">
-                Roadmap Maker
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('roadmap.planner.index')"
                                    :active="request()->routeIs('roadmap.planner.*')">
                 Roadmap Planner
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('roadmap.maker')" :active="request()->routeIs('roadmap.maker')">
+                Roadmap Maker
             </x-responsive-nav-link>
         </div>
 

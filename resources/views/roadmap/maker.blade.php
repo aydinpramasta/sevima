@@ -4,7 +4,7 @@
             Roadmap Maker
         </h2>
         <p class="text-gray-600 leading-tight">
-            Generate roadmap terkait materi yang ingin Anda pelajari.
+            Generate roadmap terkait materi yang ingin Anda pelajari dengan didukung oleh teknologi AI.
         </p>
     </x-slot>
 
@@ -13,7 +13,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="p-4 mb-6 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
-                        <span class="font-medium">Tips!</span> Setelah generate roadmap, Anda bisa klik salah satu poin
+                        <span class="font-medium">Tips!</span> Setelah AI men-generate roadmap, Anda bisa klik salah
+                        satu poin
                         untuk mencari referensi di Google.
                     </div>
 
