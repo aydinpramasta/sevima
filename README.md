@@ -5,6 +5,8 @@
 IntelliPlan merupakan aplikasi berbasis web dengan tujuan untuk dirancang untuk membantu pengguna dalam merencanakan
 perjalanan pembelajaran yang efektif dan efisien.
 
+Site URL: [https://intelliplan.aydinpramasta.me](https://intelliplan.aydinpramasta.me)
+
 ## Tech Stacks
 
 - [Laravel 10](https://laravel.com)
