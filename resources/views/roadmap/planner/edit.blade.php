@@ -72,7 +72,7 @@
                             <a href="{{ route('roadmap.planner.show', $planner) }}">
                                 <x-secondary-button>Kembali</x-secondary-button>
                             </a>
-                            <x-primary-button>Save</x-primary-button>
+                            <x-primary-button>Simpan</x-primary-button>
                         </div>
                     </form>
                 </div>

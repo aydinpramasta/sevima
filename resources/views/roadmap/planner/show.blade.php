@@ -10,21 +10,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="grid gap-6">
-                        <div class="flex items-center gap-4 ml-auto">
-                            <a href="{{ route('roadmap.planner.index') }}">
-                                <x-secondary-button>Kembali</x-secondary-button>
-                            </a>
-                            <a href="{{ route('roadmap.planner.edit', $planner) }}">
-                                <x-primary-button>Edit</x-primary-button>
-                            </a>
-                            <form action="{{ route('roadmap.planner.destroy', $planner) }}" method="post"
-                                  onsubmit="return confirm('Apakah Anda yakin?')">
-                                @csrf
-                                @method('delete')
-                                <x-danger-button>Hapus</x-danger-button>
-                            </form>
-                        </div>
-
                         <div>
                             <x-input-label for="topic" value="Topik"/>
                             <x-text-input id="topic" name="topic" type="text" class="mt-1 block w-full"
@@ -32,6 +17,8 @@
                         </div>
 
                         <div class="overflow-x-auto">
+                            <x-input-label for="chapters" value="Bab"/>
+
                             <table id="chapters"
                                    class="mt-2 w-full text-sm whitespace-nowrap text-left text-gray-500">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-100">
@@ -69,6 +56,21 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class="flex items-center gap-4 ml-auto">
+                            <a href="{{ route('roadmap.planner.index') }}">
+                                <x-secondary-button>Kembali</x-secondary-button>
+                            </a>
+                            <a href="{{ route('roadmap.planner.edit', $planner) }}">
+                                <x-primary-button>Edit</x-primary-button>
+                            </a>
+                            <form action="{{ route('roadmap.planner.destroy', $planner) }}" method="post"
+                                  onsubmit="return confirm('Apakah Anda yakin?')">
+                                @csrf
+                                @method('delete')
+                                <x-danger-button>Hapus</x-danger-button>
+                            </form>
                         </div>
                     </div>
                 </div>
