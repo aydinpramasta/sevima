@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoadmapPlanRequest;
 use App\Models\Plan;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -24,7 +25,7 @@ class RoadmapPlannerController extends Controller
         return view('roadmap.planner.create');
     }
 
-    public function store(StoreRoadmapPlanRequest $request)
+    public function store(StoreRoadmapPlanRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -42,12 +43,9 @@ class RoadmapPlannerController extends Controller
             ->with('success', 'Roadmap Plan berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Plan $planner): View
     {
-        //
+        return view('roadmap.planner.show', compact('planner'));
     }
 
     /**
