@@ -17,7 +17,7 @@
                             <a href="{{ route('roadmap.planner.edit', $planner) }}">
                                 <x-primary-button>Edit</x-primary-button>
                             </a>
-                            <form action="{{ route('roadmap.planner.destroy', $planner) }}"
+                            <form action="{{ route('roadmap.planner.destroy', $planner) }}" method="post"
                                   onsubmit="return confirm('Apakah Anda yakin?')">
                                 @csrf
                                 @method('delete')

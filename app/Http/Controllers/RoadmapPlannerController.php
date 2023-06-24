@@ -90,11 +90,26 @@ class RoadmapPlannerController extends Controller
             ->with('success', 'Roadmap Plan berhasil diedit.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Plan $planner): RedirectResponse
     {
-        //
+        $chaptersToBeDeleted = PlanChapter::query()
+            ->whereBelongsTo($planner, 'plan')
+            ->get();
+
+        foreach ($chaptersToBeDeleted as $chapter) {
+            if ($chapter->isNotEnded()) continue;
+
+            $chapter->delete();
+        }
+
+        if ($planner->chapters()->exists()) {
+            return back()->withErrors(['chapters' => 'There is a chapter that has not been done yet.']);
+        }
+
+        $planner->delete();
+
+        return redirect()
+            ->route('roadmap.planner.index')
+            ->with('success', 'Roadmap Plan berhasil dihapus.');
     }
 }
