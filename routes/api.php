@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/roadmap/maker', RoadmapMakerController::class)->name('api.roadmap.maker');
+Route::get('/roadmap/maker', RoadmapMakerController::class)
+    ->middleware('throttle:openai')
+    ->name('api.roadmap.maker');
