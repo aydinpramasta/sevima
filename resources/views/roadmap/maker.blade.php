@@ -36,14 +36,34 @@
                         <span x-text="error" class="mt-1 text-sm text-red-600"></span>
                     </template>
 
-                    <div class="mx-4 my-6">
-                        <ul class="space-y-3">
-                            <template x-for="roadmap in roadmaps">
+                    <template x-if="loading">
+                        <h3 class="mt-6 text-lg text-center">Mohon tunggu sebentar...</h3>
+                    </template>
+
+                    <div x-cloak x-show="roadmaps.length > 0" class="mx-4 my-6 grid place-items-center">
+                        <ul>
+                            <template x-for="(roadmap, index) in roadmaps">
                                 <li>
-                                    <a x-bind:href='`//google.com/search?q=Belajar materi ${oldInput} bagian "${roadmap}"`'
-                                       x-text="roadmap"
-                                       target="_blank"
-                                       class="hover:underline"></a>
+                                    <div x-show="index > 0" class="w-[2px] h-[35px] bg-black ml-[9px]"></div>
+
+                                    <div class="flex gap-4">
+                                        <svg class="w-[20px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_17_12)">
+                                                <circle cx="50" cy="50" r="45" stroke="black" stroke-width="10"/>
+                                                <circle cx="50" cy="50" r="25" fill="black"/>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_17_12">
+                                                    <rect width="100" height="100" fill="white"/>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+
+                                        <a x-bind:href='`//google.com/search?q=Belajar materi ${oldInput} bagian "${roadmap}"`'
+                                           x-text="roadmap"
+                                           target="_blank"
+                                           class="hover:underline"></a>
+                                    </div>
                                 </li>
                             </template>
                         </ul>
@@ -69,7 +89,6 @@
                     try {
                         const result = await axios.get(`{{ route('api.roadmap.maker') }}?topic=${this.input}`);
                         this.roadmaps = result.data.data.result;
-                        console.log(this.roadmaps, this.roadmaps.length);
                     } catch (e) {
                         this.error = e.response?.data?.message ?? e.message;
                     } finally {
