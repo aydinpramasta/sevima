@@ -88,7 +88,7 @@ class RoadmapPlannerController extends Controller
         });
 
         return redirect()
-            ->route('roadmap.planner.index')
+            ->route('roadmap.planner.show', $planner)
             ->with('success', 'Roadmap Plan berhasil diedit.');
     }
 
