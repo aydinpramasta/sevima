@@ -21,7 +21,7 @@
 
                     <div class="flex flex-wrap justify-center gap-8">
                         @forelse($plans as $plan)
-                            <a href="{{ route('roadmap.planner.edit') }}"
+                            <a href="{{ route('roadmap.planner.show', $plan) }}"
                                class="flex gap-4 items-center rounded-xl border px-6 py-4 transition duration-300 hover:shadow-md hover:scale-[0.99]">
                                 <span>{{ $plan->topic }}</span>
                                 <svg class="w-[20px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">

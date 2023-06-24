@@ -16,11 +16,11 @@
                         <div>
                             <x-input-label for="topic" value="Topik"/>
                             <x-text-input id="topic" name="topic" type="text" class="mt-1 block w-full"
-                                          :value="old('topic', request('topic'))" required/>
+                                          :value="old('topic', request('topic'))"/>
                             <x-input-error class="mt-2" :messages="$errors->get('topic')"/>
                         </div>
 
-                        <div x-data="chapters()">
+                        <div x-data="chapters()" class="overflow-x-auto">
                             <div class="flex gap-4 justify-between items-center">
                                 <x-input-label for="chapters" value="Bab"/>
                                 <x-secondary-button @click.prevent="addChapter()">Tambah Bab</x-secondary-button>
@@ -44,8 +44,8 @@
                                         <input type="hidden" x-bind:name="'chapters[' + index + '][id]'"
                                                x-bind:value="chapter.id"/>
                                         <td class="px-6 py-4">
-                                            <x-text-input type="text" x-bind:name="'chapters[' + index + '][name]'"
-                                                          x-bind:value="chapter.name"/>
+                                            <x-text-input type="text" x-bind:name="'chapters[' + index + '][chapter]'"
+                                                          x-bind:value="chapter.chapter"/>
                                         </td>
                                         <td class="px-6 py-4">
                                             <x-text-input class="w-[100px]" type="number"
@@ -61,6 +61,10 @@
                                 </template>
                                 </tbody>
                             </table>
+
+                            @foreach($errors->get('chapters.*') as $error)
+                                <x-input-error class="mt-2" :messages="$error"/>
+                            @endforeach
                         </div>
 
                         <div class="flex items-center gap-4 ml-auto">
@@ -82,7 +86,7 @@
                 addChapter() {
                     this.chapters.push({
                         id: Date.now(),
-                        name: '',
+                        chapter: '',
                         planned_hours: '',
                     });
                 },

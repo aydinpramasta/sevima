@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoadmapPlanRequest;
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class RoadmapPlannerController extends Controller
@@ -22,12 +24,22 @@ class RoadmapPlannerController extends Controller
         return view('roadmap.planner.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreRoadmapPlanRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        DB::transaction(function () use ($data) {
+            $plan = Plan::create([
+                'topic' => $data['topic'],
+                'user_id' => auth()->id(),
+            ]);
+
+            $plan->chapters()->createMany($data['chapters']);
+        });
+
+        return redirect()
+            ->route('roadmap.planner.index')
+            ->with('success', 'Roadmap Plan berhasil dibuat.');
     }
 
     /**

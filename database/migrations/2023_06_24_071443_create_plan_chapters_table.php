@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->string('chapter');
             $table->smallInteger('planned_hours');
             $table->foreignId('plan_id')->constrained();
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
             $table->timestamps();
         });
     }
