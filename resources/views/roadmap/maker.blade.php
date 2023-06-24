@@ -4,7 +4,7 @@
             Roadmap Maker
         </h2>
         <p class="text-gray-600 leading-tight">
-            Buat roadmap terkait materi yang ingin anda pelajari!
+            Buat roadmap terkait materi yang ingin Anda pelajari.
         </p>
     </x-slot>
 
@@ -13,7 +13,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="p-4 mb-6 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
-                        <span class="font-medium">Tips!</span> Setelah membuat roadmap, Anda bisa klik salah satu poin untuk mencari referensi di Google.
+                        <span class="font-medium">Tips!</span> Setelah membuat roadmap, Anda bisa klik salah satu poin
+                        untuk mencari referensi di Google.
                     </div>
 
                     <form class="flex gap-4">
@@ -24,12 +25,13 @@
                                       class="block w-full"
                                       placeholder="Masukkan materi yang ingin anda pelajari..."
                                       :value="old('topic')"
-                                      autofocus />
+                                      autofocus/>
                         <x-secondary-button x-on:click.prevent="makeRoadmap()"
                                             x-bind:disabled="loading"
                                             x-text="loading ? 'Loading...' : 'Buat Roadmap'"
                                             type="submit"
-                                            class="whitespace-nowrap">Buat Roadmap</x-secondary-button>
+                                            class="whitespace-nowrap">Buat Roadmap
+                        </x-secondary-button>
                     </form>
 
                     <template x-if="error">
@@ -47,7 +49,8 @@
                                     <div x-show="index > 0" class="w-[2px] h-[35px] bg-black ml-[9px]"></div>
 
                                     <div class="flex gap-4">
-                                        <svg class="w-[20px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-[20px]" viewBox="0 0 100 100" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_17_12)">
                                                 <circle cx="50" cy="50" r="45" stroke="black" stroke-width="10"/>
                                                 <circle cx="50" cy="50" r="25" fill="black"/>

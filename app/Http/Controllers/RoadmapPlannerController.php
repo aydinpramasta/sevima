@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RoadmapPlannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $plans = Plan::with('user')
+            ->whereBelongsTo(auth()->user(), 'user')
+            ->paginate(15);
+
+        return view('roadmap.planner.index', compact('plans'));
     }
 
     /**
