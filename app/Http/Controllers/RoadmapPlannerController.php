@@ -92,20 +92,13 @@ class RoadmapPlannerController extends Controller
 
     public function destroy(Plan $planner): RedirectResponse
     {
-        $chaptersToBeDeleted = PlanChapter::query()
-            ->whereBelongsTo($planner, 'plan')
-            ->get();
-
-        foreach ($chaptersToBeDeleted as $chapter) {
-            if ($chapter->isNotEnded()) continue;
-
-            $chapter->delete();
+        foreach ($planner->chapters as $chapter) {
+            if ($chapter->isNotEnded()) {
+                return back()->withErrors(['chapters' => 'There is a chapter that has not been done yet.']);
+            }
         }
 
-        if ($planner->chapters()->exists()) {
-            return back()->withErrors(['chapters' => 'There is a chapter that has not been done yet.']);
-        }
-
+        $planner->chapters()->delete();
         $planner->delete();
 
         return redirect()

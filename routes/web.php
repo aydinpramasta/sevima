@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoadmapChapterController;
 use App\Http\Controllers\RoadmapMakerController;
 use App\Http\Controllers\RoadmapPlannerController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/roadmap')->name('roadmap.')->group(function () {
         Route::get('/maker', RoadmapMakerController::class)->name('maker');
         Route::resource('/planner', RoadmapPlannerController::class);
+        Route::get('/chapter/{chapter}', RoadmapChapterController::class)->name('chapter');
     });
 });
 

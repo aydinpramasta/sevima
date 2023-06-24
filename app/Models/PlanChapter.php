@@ -18,9 +18,19 @@ class PlanChapter extends Model
         'end_at',
     ];
 
+    protected $casts = [
+        'start_at' => 'datetime',
+        'end_at' => 'datetime',
+    ];
+
     public function plan(): BelongsTo
     {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function isNotStarted(): bool
+    {
+        return is_null($this->start_at) && is_null($this->end_at);
     }
 
     public function isNotEnded(): bool

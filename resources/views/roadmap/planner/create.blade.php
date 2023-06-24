@@ -62,6 +62,7 @@
                                 </tbody>
                             </table>
 
+                            <x-input-error class="mt-2" :messages="$errors->get('chapters')"/>
                             @foreach($errors->get('chapters.*') as $error)
                                 <x-input-error class="mt-2" :messages="$error"/>
                             @endforeach

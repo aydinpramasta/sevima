@@ -18,7 +18,6 @@
 
                         <div class="overflow-x-auto">
                             <x-input-label for="chapters" value="Bab"/>
-
                             <table id="chapters"
                                    class="mt-2 w-full text-sm whitespace-nowrap text-left text-gray-500">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-100">
@@ -28,6 +27,12 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         {{ __('Alokasi Waktu') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Waktu Mulai') }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ __('Waktu Selesai') }}
                                     </th>
                                     <th scope="col" class="px-6 py-3"></th>
                                 </tr>
@@ -45,17 +50,34 @@
                                             <span class="text-md ml-4">jam</span>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <form action="#"
+                                            <x-text-input
+                                                :value="$chapter->start_at?->timezone('Asia/Jakarta')->locale('id')->isoFormat('H:mm D MMMM Y')"
+                                                disabled/>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <x-text-input
+                                                :value="$chapter->end_at?->timezone('Asia/Jakarta')->locale('id')->isoFormat('H:mm D MMMM Y')"
+                                                disabled/>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <form action="{{ route('roadmap.chapter', $chapter) }}"
                                                   onsubmit="return confirm('Apakah anda yakin?')">
                                                 @csrf
                                                 @method('put')
-                                                <x-primary-button>Mulai</x-primary-button>
+                                                @if($chapter->isNotStarted())
+                                                    <x-primary-button>Mulai</x-primary-button>
+                                                @elseif($chapter->isNotEnded())
+                                                    <x-secondary-button type="submit">Selesai</x-secondary-button>
+                                                @else
+                                                    <span>Bab ini telah anda selesaikan.</span>
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                            <x-input-error class="mt-2" :messages="$errors->get('chapters')"/>
                         </div>
 
                         <div class="flex items-center gap-4 ml-auto">
