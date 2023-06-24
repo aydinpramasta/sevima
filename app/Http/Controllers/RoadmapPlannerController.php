@@ -48,12 +48,9 @@ class RoadmapPlannerController extends Controller
         return view('roadmap.planner.show', compact('planner'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Plan $planner): View
     {
-        //
+        return view('roadmap.planner.edit', compact('planner'));
     }
 
     /**

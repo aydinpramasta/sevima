@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Buat Roadmap Plan
+            Edit Roadmap Plan
         </h2>
     </x-slot>
 
@@ -9,14 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form method="post" action="{{ route('roadmap.planner.store') }}" class="grid gap-6">
+                    <form method="post" action="{{ route('roadmap.planner.update', $planner) }}" class="grid gap-6">
                         @csrf
-                        @method('post')
+                        @method('put')
 
                         <div>
                             <x-input-label for="topic" value="Topik"/>
                             <x-text-input id="topic" name="topic" type="text" class="mt-1 block w-full"
-                                          :value="old('topic', request('topic'))"/>
+                                          :value="old('topic', $planner->topic)"/>
                             <x-input-error class="mt-2" :messages="$errors->get('topic')"/>
                         </div>
 
@@ -82,7 +82,7 @@
     <script>
         function chapters() {
             return {
-                chapters: {!! json_encode(old('chapters', request('chapters')) ?? []) !!},
+                chapters: {!! json_encode(old('chapters', $planner->chapters) ?? []) !!},
                 addChapter() {
                     this.chapters.push({
                         id: Date.now(),
