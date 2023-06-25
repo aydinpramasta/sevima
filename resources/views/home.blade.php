@@ -28,7 +28,7 @@
             <x-primary-button class="py-4 px-6">Get Started</x-primary-button>
         </a>
     </header>
-    <section class="mx-auto max-w-5xl grid place-items-center gap-8">
+    <section class="mx-auto my-8 max-w-5xl grid place-items-center gap-8">
         <h2 class="text-2xl font-semibold tracking-wider">Fitur-fitur</h2>
         <div class="flex flex-wrap justify-center gap-8">
             <div class="p-8 max-w-md border rounded-lg transition duration-300 hover:shadow-lg hover:scale-[0.995]">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </section>
-    <footer class="text-center mt-8">
+    <footer class="text-center my-8">
         <span>Made with ❤️ by <a class="text-purple-800 underline" href="https://aydinpramasta.me" target="_blank">Aydin Pramasta</a></span>
     </footer>
 </main>
