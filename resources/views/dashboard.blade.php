@@ -38,6 +38,9 @@
                             <h3 class="text-md">Hooray! Anda tidak memiliki Bab yang belum diselesaikan.</h3>
                         @endforelse
                     </div>
+                    <div class="">
+                        {{ $unfinishedChapters->links() }}
+                    </div>
                 </div>
             </div>
         </div>
