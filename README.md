@@ -2,7 +2,7 @@
 
 ## About
 
-IntelliPlan merupakan aplikasi berbasis web dengan tujuan untuk dirancang untuk membantu pengguna dalam merencanakan
+IntelliPlan merupakan aplikasi berbasis web yang dirancang untuk membantu pengguna dalam merencanakan
 perjalanan pembelajaran yang efektif dan efisien.
 
 Site URL: [https://intelliplan.aydinpramasta.me](https://intelliplan.aydinpramasta.me)
