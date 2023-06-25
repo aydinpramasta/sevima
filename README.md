@@ -19,6 +19,9 @@ Site URL: [https://intelliplan.aydinpramasta.me](https://intelliplan.aydinpramas
 # Clone the repo
 git clone https://github.com/aydinpramasta/sevima-intelliplan.git
 
+# Change to repo directory
+cd sevima-intelliplan
+
 # Install PHP dependencies
 composer install
 
